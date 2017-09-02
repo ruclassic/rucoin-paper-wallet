@@ -1,10 +1,14 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="description" content="RU Coin Open Client-Side Paper Wallet Generator. Create your own paper wallet in a few easy steps : Generate, Print and Fold !">
     <meta name="keywords" content="rucoin, paper, wallet, generator, cryptocurrencies, bitcoin, litecoin, dogecoin" /> 
 
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+	<link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="images/favicon.png" sizes="16x16">
+	
     <title>RUcoin - Paper Wallet</title>
 
     <script type="text/javascript">
@@ -10231,6 +10235,58 @@ function QRCodeScanner(width, height, container, success, error) {
             height: 2px;
             background-color: #ffffff;
         }
+		
+		.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff !important;
+    <!-- background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999); -->
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+.close:hover {
+    background: black;
+}
 
         @media screen {
             #tagline {
@@ -10804,10 +10860,10 @@ function QRCodeScanner(width, height, container, success, error) {
         <div id="footer" class="footer">
             <div id="donation">
 				<label onmouseover="">
-					<b>Donate BTC</b> : <span style="color: #d58424;" >1yBKRpBAy8q7s2qnRmC6TTZpPPgRx9rZ6 </span>
+					<b>Donate BTC</b> : <span style="color: #d58424;" > <a href="#modelBit">1yBKRpBAy8q7s2qnRmC6TTZpPPgRx9rZ6</a></span>
 				</label></br>
 				<label onmouseover="">
-					<b>Donate RUC</b> : <span style="color: #d58424;" > RHoGyDTtvPd3Pch8VAFRShhvVuDrDxcvGb </span>
+					<b>Donate RUC</b> : <span style="color: #d58424;" > <a href="#modelRu">RHoGyDTtvPd3Pch8VAFRShhvVuDrDxcvGb</a> </span>
 				</label> 
 			</div>
 			<div>
@@ -10821,6 +10877,24 @@ function QRCodeScanner(width, height, container, success, error) {
         </div>
     </div>
 
+	
+	<div id="modelBit" class="modalDialog">
+		<div style="text-align:center">	<a href="#close" title="Close" class="close">X</a>
+        	<h2 >Donate Bitcoin</h2>
+			<p><b style="color: cadetblue;">1yBKRpBAy8q7s2qnRmC6TTZpPPgRx9rZ6</b></p>
+			<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=1yBKRpBAy8q7s2qnRmC6TTZpPPgRx9rZ6" style="background-color: transparent;"></img>
+		</div>
+	</div>
+	
+	<div id="modelRu" class="modalDialog">
+		<div style="text-align:center">	<a href="#close" title="Close" class="close">X</a>
+        	<h2 >Donate RUcoin</h2>
+			<p><b style="color: cadetblue;">RHoGyDTtvPd3Pch8VAFRShhvVuDrDxcvGb</b></p>
+			<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=RHoGyDTtvPd3Pch8VAFRShhvVuDrDxcvGb" style="background-color: transparent;"></img>
+		</div>
+	</div>
+	
+	
     <script type="text/javascript">
 (function (window) {
 	var muchIndex    = 0;
@@ -10942,7 +11016,7 @@ janin.currency = {
         janin.selectedCurrency = janin.currencies[index];
 
         var coinImgUrl = "logos/" + janin.currency.name().toLowerCase() + ".png";
-        document.getElementById("coinLogoImg").src = coinImgUrl;
+        //document.getElementById("coinLogoImg").src = coinImgUrl;
 
         // Update title depending on currency
         document.title = janin.currency.name() + " " + ninja.translator.get("title");
@@ -11637,7 +11711,7 @@ ninja.translator = {
 
 	translations: {
     ﻿"en": {
-    "defaultTitle" : "WalletGenerator.net - Universal Paper wallet generator for Bitcoin and other cryptocurrencies",
+    "defaultTitle" : "RUcoin - Paper Wallet Generator",
     "title" : "Paper Wallet Generator",
     "bulkgeneratingaddresses": "Generating addresses... ",
     "brainalertpassphrasetooshort": "The passphrase you entered is too short.\n\n",
